@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  * { margin: 0; padding: 0; }
+  section { text-align: center; }
+  article { width: 100%; max-width: 320px; height: 100vh; margin: auto; overflow: hidden; }
+  img { display: block; object-fit: cover; height: 100%; margin: auto; }
+  @media screen and (max-width: 480px) {
+    article { max-width: 400px; width: 400px; height: 100%; }
+    img { width: 100%; }
+  }
+</style>
+
+<body>
+  <main>
+    <section>
+      <article><img src="/images/img1.jpg" /></article>
+      <article><img src="/images/img2.jpg" /></article>
+      <article><img src="/images/img3.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img4.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img5.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img6.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img7.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img8.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img9.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img10.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img11.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img12.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img13.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img14.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img15.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img16.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img17.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img18.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img19.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img20.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img21.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img22.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img23.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img24.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img25.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img26.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img27.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img28.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img29.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img30.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img31.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img32.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img33.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img34.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img35.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img36.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img37.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img38.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img39.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img40.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img41.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img42.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img43.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img44.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img45.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img46.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img47.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img48.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img49.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img50.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img51.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img52.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img53.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img54.jpg" /></article>
+    </section>
+  </main>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    let lazyloadImages;    
+
+    if ("IntersectionObserver" in window) {
+      lazyloadImages = document.querySelectorAll(".lazy");
+      let imageObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            let image = entry.target;
+            image.src = image.dataset.src;
+            image.classList.remove("lazy");
+            imageObserver.unobserve(image);
+          }
+        });
+      });
+
+        lazyloadImages.forEach(function(image) {
+        imageObserver.observe(image);
+      });
+    } else {  
+      let lazyloadThrottleTimeout;
+      lazyloadImages = document.querySelectorAll(".lazy");
+      
+      function lazyload () {
+        if(lazyloadThrottleTimeout) {
+          clearTimeout(lazyloadThrottleTimeout);
+        }    
+
+        lazyloadThrottleTimeout = setTimeout(function() {
+          let scrollTop = window.pageYOffset;
+          lazyloadImages.forEach(function(img) {
+              if(img.offsetTop < (window.innerHeight + scrollTop)) {
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+              }
+          });
+          if(lazyloadImages.length == 0) { 
+            document.removeEventListener("scroll", lazyload);
+            window.removeEventListener("resize", lazyload);
+            window.removeEventListener("orientationChange", lazyload);
+          }
+        }, 20);
+      }
+
+      document.addEventListener("scroll", lazyload);
+      window.addEventListener("resize", lazyload);
+      window.addEventListener("orientationChange", lazyload);
+    }
+  })
+
+  </script>
+</body>
+</html>
