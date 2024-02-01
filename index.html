@@ -78,8 +78,13 @@
   
 
   section { text-align: center; }
-  article { width: 100%; max-width: 320px; height: 100vh; margin: auto; overflow: hidden; }
+  article { position: relative; width: 100%; margin: auto; overflow: hidden; }
   img { display: block; object-fit: cover; height: 100%; margin: auto; }
+  .video_wrap { position: absolute; top: 20%; left: 0; width: 100%; height: 60%; background: #fff; }
+  .video {
+    width: 100%;
+    height: 100%;
+  }
   @media screen and (max-width: 480px) {
     article { max-width: 100%; width: 100%; height: 100%; }
     img { width: 100%; }
@@ -95,7 +100,14 @@
   <main>
     <section>
       <article><img src="/images/img1.jpg" /></article>
-      <article><img src="/images/img2.jpg" /></article>
+      <article class="video_section">
+        <img src="/images/video_img.jpg" />
+        <div class="video_wrap">
+          <video class="video" autoplay loop muted>
+            <source src="/video.MP4" type="video/MP4" />
+          </video>
+        </div>
+      </article>
       <article><img src="/images/img3.jpg" /></article>
       <article><img class="lazy" data-src="/images/img4.jpg" /></article>
       <article><img class="lazy" data-src="/images/img5.jpg" /></article>
@@ -115,7 +127,6 @@
       <article><img class="lazy" data-src="/images/img19.jpg" /></article>
       <article><img class="lazy" data-src="/images/img20.jpg" /></article>
       <article><img class="lazy" data-src="/images/img21.jpg" /></article>
-      <article><img class="lazy" data-src="/images/img22.jpg" /></article>
       <article><img class="lazy" data-src="/images/img23.jpg" /></article>
       <article><img class="lazy" data-src="/images/img24.jpg" /></article>
       <article><img class="lazy" data-src="/images/img25.jpg" /></article>
