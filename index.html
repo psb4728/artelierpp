@@ -78,8 +78,8 @@
 
 <body>
   <!-- bgm -->
-  <audio class="audio" autoplay="true" loop="true" muted="true">
-    <source src="/instinct.mp3">
+  <audio id="audioplay" autoplay loop muted>
+    <source src="/instinct.mp3" type="audio/mp3">
   </audio>
 
   <!-- 로딩 -->
@@ -89,7 +89,7 @@
 
   <main>
     <section>
-      <article><img src="/images/img1.jpg" /></article>
+      <article class="first_section"><img src="/images/img1.jpg" /></article>
       <article class="video_section">
         <img src="/images/video_img.jpg" />
         <div class="video_wrap">
@@ -165,7 +165,8 @@
     const html = document.querySelector('html');
     const mask = document.querySelector('.mask');
     const topBtn = document.querySelector('.top_btn');
-    const audio = document.querySelector('.audio');
+    const audioplay = document.getElementById('audioplay');
+    const firstSection = document.querySelector('.first_section');
 
     html.style.overflow = 'hidden'; //로딩 중 스크롤 방지
 
@@ -175,8 +176,15 @@
       mask.style.display = 'none';
     });
 
-    window.addEventListener('mouseover', ()=> {audio.muted = false; })
+    function handleAudioPlay() {
+      audioplay.muted = false;
+      audioplay.play();
+    }
 
+    
+    firstSection.addEventListener('click', handleAudioPlay);
+    firstSection.addEventListener('mouseover', handleAudioPlay);
+    firstSection.addEventListener('mouseout', handleAudioPlay);
 
     window.addEventListener('scroll', ()=> {
       window.scrollY > 500 ? topBtn.classList.add('show') : topBtn.classList.remove('show');
