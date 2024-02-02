@@ -78,7 +78,7 @@
 
 <body>
   <!-- bgm -->
-  <audio autoplay loop>
+  <audio class="audio" autoplay loop>
     <source src="/instinct.mp3">
   </audio>
 
@@ -172,6 +172,8 @@
       mask.style.opacity = '0'; //서서히 사라지는 효과
       html.style.overflow = 'auto'; //스크롤 방지 해제
       mask.style.display = 'none';
+
+      document.querySelector('.audio').play();
     });
 
 
