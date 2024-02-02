@@ -78,7 +78,7 @@
 
 <body>
   <!-- bgm -->
-  <audio class="audio" autoplay loop>
+  <audio class="audio" autoplay="true" loop="true" muted="true">
     <source src="/instinct.mp3">
   </audio>
 
@@ -165,6 +165,7 @@
     const html = document.querySelector('html');
     const mask = document.querySelector('.mask');
     const topBtn = document.querySelector('.top_btn');
+    const audio = document.querySelector('.audio');
 
     html.style.overflow = 'hidden'; //로딩 중 스크롤 방지
 
@@ -172,9 +173,9 @@
       mask.style.opacity = '0'; //서서히 사라지는 효과
       html.style.overflow = 'auto'; //스크롤 방지 해제
       mask.style.display = 'none';
-
-      document.querySelector('.audio').play();
     });
+
+    window.addEventListener('mouseover', ()=> {audio.muted = false; })
 
 
     window.addEventListener('scroll', ()=> {
