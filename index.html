@@ -181,12 +181,9 @@
       audioplay.play();
     }
 
-    
-    firstSection.addEventListener('click', handleAudioPlay);
-    firstSection.addEventListener('mouseover', handleAudioPlay);
-    firstSection.addEventListener('mouseout', handleAudioPlay);
 
     window.addEventListener('scroll', ()=> {
+      handleAudioPlay()
       window.scrollY > 500 ? topBtn.classList.add('show') : topBtn.classList.remove('show');
     });
 
