@@ -78,7 +78,7 @@
 
 <body>
   <!-- bgm -->
-  <audio id="audioplay" autoplay loop muted>
+  <audio id="audioplay" autoplay loop muted playsinline>
     <source src="/instinct.mp3" type="audio/mp3">
   </audio>
 
@@ -183,7 +183,7 @@
 
 
     window.addEventListener('scroll', ()=> {
-      handleAudioPlay()
+      window.scrollY > 50 ? handleAudioPlay() : '';
       window.scrollY > 500 ? topBtn.classList.add('show') : topBtn.classList.remove('show');
     });
 
