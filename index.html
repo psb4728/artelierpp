@@ -81,13 +81,32 @@
   article { position: relative; width: 100%; margin: auto; overflow: hidden; }
   img { display: block; object-fit: cover; height: 100%; margin: auto; }
   .video_wrap { position: absolute; top: 20%; left: 0; width: 100%; height: 60%; background: #fff; }
-  .video {
-    width: 100%;
-    height: 100%;
+  .video { width: 100%; height: 100%; }
+  .top_btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    background: #202020;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: all .3s ease;
   }
+  .top_btn.show { opacity: 1; }
+  .top_btn:hover { height: 50px; }
   @media screen and (max-width: 480px) {
     article { max-width: 100%; width: 100%; height: 100%; }
     img { width: 100%; }
+    .top_btn { bottom: 10px; right: 10px; font-size: 13px; }
   }
 </style>
 
@@ -160,22 +179,36 @@
       <article><img class="lazy" data-src="/images/img53.jpg" /></article>
       <article><img class="lazy" data-src="/images/img54.jpg" /></article>
     </section>
+
+
+    <!-- top btn -->
+    <button class="top_btn">TOP</button>
   </main>
 
 
   <script>
     const html = document.querySelector('html');
     const mask = document.querySelector('.mask');
+    const topBtn = document.querySelector('.top_btn');
 
     html.style.overflow = 'hidden'; //로딩 중 스크롤 방지
 
-    window.addEventListener('load', function () {
+    window.addEventListener('load', ()=> {
       mask.style.opacity = '0'; //서서히 사라지는 효과
       html.style.overflow = 'auto'; //스크롤 방지 해제
       mask.style.display = 'none';
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
+
+    window.addEventListener('scroll', ()=> {
+      window.scrollY > 500 ? topBtn.classList.add('show') : topBtn.classList.remove('show');
+    });
+
+    topBtn.addEventListener('click', ()=> {
+      window.scrollTo({ top: 0, behavior: "smooth", });
+    });
+
+    document.addEventListener("DOMContentLoaded", ()=> {
       let lazyloadImages;    
 
       if ("IntersectionObserver" in window) {
