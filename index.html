@@ -78,7 +78,7 @@
 
 <body>
   <!-- bgm -->
-  <audio id="audioplay" autoplay loop muted playsinline>
+  <audio id="audioplay" autoplay loop>
     <source src="/instinct.mp3" type="audio/mp3">
   </audio>
 
@@ -165,25 +165,16 @@
     const html = document.querySelector('html');
     const mask = document.querySelector('.mask');
     const topBtn = document.querySelector('.top_btn');
-    const audioplay = document.getElementById('audioplay');
-    const firstSection = document.querySelector('.first_section');
-
+    
     html.style.overflow = 'hidden'; //로딩 중 스크롤 방지
-
+    
     window.addEventListener('load', ()=> {
       mask.style.opacity = '0'; //서서히 사라지는 효과
       html.style.overflow = 'auto'; //스크롤 방지 해제
       mask.style.display = 'none';
     });
 
-    function handleAudioPlay() {
-      audioplay.muted = false;
-      audioplay.play();
-    }
-
-
     window.addEventListener('scroll', ()=> {
-      window.scrollY > 50 ? handleAudioPlay() : '';
       window.scrollY > 500 ? topBtn.classList.add('show') : topBtn.classList.remove('show');
     });
 
