@@ -36,6 +36,22 @@
     height: 100%;
     animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
   }
+  
+  
+
+  section { text-align: center; }
+  article { position: relative; width: 100%; margin: auto; overflow: hidden; }
+  img { display: block; object-fit: cover; height: 100%; margin: auto; }
+  .video_wrap { position: absolute; top: 20%; left: 0; width: 100%; height: 60%; background: #fff; }
+  .video { width: 100%; height: 100%; }
+  .top_btn { position: fixed; bottom: 20px; right: 20px; width: 40px; height: 40px; background: transparent; border: none; cursor: pointer; opacity: 0; transition: all .3s ease; }
+  .top_btn.show { opacity: 1; }
+  .top_btn:hover { bottom: 25px; }
+  footer { text-align: center; padding: 0 10px; background: #000; }
+  footer a { font-family: 'Roboto', sans-serif; color: #ccc; font-size: 8px; font-weight: 300; text-decoration: none; }
+  .logo_wrap { position: absolute; top: 44%; left: 50%; width: 40%; transform: translate(-50%, -50%) }
+  .logo_wrap img { width: 100%; animation: lds-heart 1.3s infinite cubic-bezier(0.215, 0.61, 0.355, 1); }
+
   @keyframes lds-heart {
     0% {
       transform: scale(0.95);
@@ -56,18 +72,6 @@
       transform: scale(0.9);
     }
   }
-  
-
-  section { text-align: center; }
-  article { position: relative; width: 100%; margin: auto; overflow: hidden; }
-  img { display: block; object-fit: cover; height: 100%; margin: auto; }
-  .video_wrap { position: absolute; top: 20%; left: 0; width: 100%; height: 60%; background: #fff; }
-  .video { width: 100%; height: 100%; }
-  .top_btn { position: fixed; bottom: 20px; right: 20px; width: 40px; height: 40px; background: transparent; border: none; cursor: pointer; opacity: 0; transition: all .3s ease; }
-  .top_btn.show { opacity: 1; }
-  .top_btn:hover { bottom: 25px; }
-  footer { text-align: center; padding: 0 10px; background: #000; }
-  footer a { font-family: 'Roboto', sans-serif; color: #ccc; font-size: 8px; font-weight: 300; text-decoration: none; }
   @media screen and (max-width: 480px) {
     article { max-width: 100%; width: 100%; height: 100%; }
     img { width: 100%; }
@@ -79,7 +83,7 @@
 <body>
   <!-- bgm -->
   <audio id="audioplay" autoplay loop>
-    <source src="/instinct.mp3" type="audio/mp3">
+    <source src="/bgm.mp3" type="audio/mp3">
   </audio>
 
   <!-- 로딩 -->
@@ -89,7 +93,7 @@
 
   <main>
     <section>
-      <article class="first_section"><img src="/images/img1.jpg" /></article>
+      <article class="first_section"><img src="/images/img1.jpg" /><div class="logo_wrap"><img src="/images/black_logo.png" alt=""></div></article>
       <article class="video_section">
         <img src="/images/video_img.jpg" />
         <div class="video_wrap">
@@ -148,7 +152,7 @@
       <article><img class="lazy" data-src="/images/img51.jpg" /></article>
       <article><img class="lazy" data-src="/images/img52.jpg" /></article>
       <article><img class="lazy" data-src="/images/img53.jpg" /></article>
-      <article><img class="lazy" data-src="/images/img54.jpg" /></article>
+      <article><img class="lazy" data-src="/images/img54.jpg" /><div class="logo_wrap" style="top: 47%;"><img src="/images/white_logo.png" alt=""></div></article>
     </section>
 
     <footer>
